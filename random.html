@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Roll Number Picker</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            margin-top: 50px;
+        }
+        .robot-container {
+            display: flex;
+            justify-content: center;
+            position: relative;
+            height: 250px;
+        }
+        .robot {
+            width: 150px;
+            height: 150px;
+            position: absolute;
+            left: 0;
+            transition: transform 1s ease-in-out;
+        }
+        .roll-number {
+            position: absolute;
+            top: 50px;
+            left: 60px;
+            font-size: 20px;
+            font-weight: bold;
+            background: yellow;
+            padding: 5px 10px;
+            border-radius: 5px;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+        .show-number {
+            opacity: 1 !important;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="robot-container">
+        <img id="robot" src="robo.jpg"  class="robot">
+        <div id="rollNumber" class="roll-number"></div>
+    </div>
+    <br>
+    <button onclick="startRobot()">Start</button>
+    
+    <script>
+        const rollNumbers = ["22p31a0401","22p31a0402","22p31a0403","22p31a0404","22p31a0405","22p31a0406","22p31a0407","22p31a0408","22p31a0409","22p31a0410","22p31a0411","22p31a0412","22p31a0413","22p31a0414","22p31a0415","22p31a0416","22p31a0417","22p31a0418","22p31a0419","22p31a0420","22p31a0421","22p31a0422","22p31a0423","22p31a0424","22p31a0425","22p31a0426","22p31a0427","22p31a0428","22p31a0429","22p31a0430"]
+        
+        function startRobot() {
+            const robot = document.getElementById("robot");
+            const displayElement = document.getElementById("rollNumber");
+            const randomIndex = Math.floor(Math.random() * rollNumbers.length);
+            const selectedRoll = rollNumbers[randomIndex];
+            
+            // Move robot forward
+            robot.style.transform = "translateX(200px)";
+            
+            setTimeout(() => {
+                // Display selected roll number
+                displayElement.textContent = selectedRoll;
+                displayElement.classList.add("show-number");
+                
+                setTimeout(() => {
+                    displayElement.classList.remove("show-number");
+                    robot.style.transform = "translateX(0)"; // Reset robot position
+                }, 2000);
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
